@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+skill/.runtime/
+skill/generator.json

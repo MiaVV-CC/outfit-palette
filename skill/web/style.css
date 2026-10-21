@@ -1,0 +1,147 @@
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:400;font-display:swap;src:url("./fonts/cormorant-latin-400.woff2") format("woff2")}
+:root{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;color:#000;background:#fff;font-synthesis:none;line-height:1.65}
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+button,a,input,select,textarea{font:inherit}
+button{min-height:44px;padding:10px 18px;border:1px solid #000;background:#fff;color:#000;border-radius:0;cursor:pointer}
+button:disabled{opacity:.35;cursor:default}
+button:focus-visible,a:focus-visible,canvas:focus-visible{outline:2px solid #000;outline-offset:5px}
+button:hover:not(:disabled){background:#f4f4f4}
+a{color:inherit}
+header{height:100px;margin:0 5vw;border-bottom:1px solid #000;display:flex;align-items:center;gap:24px}
+.brand{margin-right:auto}
+.brand{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:26px;font-weight:600;text-decoration:none;letter-spacing:.08em}
+main{max-width:1440px;margin:auto;padding:0 5vw 64px}
+#home{min-height:64vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.primary{background:#000;color:#fff;padding:24px 72px;font-size:24px;letter-spacing:.08em}
+.primary:hover:not(:disabled){background:#262626}
+#home p{font-size:13px;color:#666;line-height:1.8;margin:20px 0}
+.mobile-copy{display:none}
+#status{line-height:1.8;font-size:14px;min-height:26px;margin:22px 0}
+#result{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:6vw;align-items:start}
+#image-stage{position:relative;width:100%;line-height:0}
+#reference{display:block;width:100%;height:auto;touch-action:pan-y}
+#reference.picking,#reference.cropping{cursor:crosshair;touch-action:none}
+#crop-box{position:absolute;border:2px solid #fff;outline:1px solid #000;pointer-events:none}
+.image-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.image-actions button{font-size:13px;padding:7px 12px}
+#pick-message{font-size:14px;line-height:1.8}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;font-weight:400;line-height:1.3;letter-spacing:.13em;margin:0}
+.text-button{border:0;border-bottom:1px solid #000;padding:6px 0;min-height:32px;font-size:14px}
+.text-button:hover:not(:disabled){background:transparent}
+#palette-bar{display:flex;min-height:110px;width:100%}
+.color-block{min-width:0}
+#palette-list{display:flex;flex-wrap:wrap;gap:20px 28px;margin-top:24px}
+.color-label{font-size:14px;line-height:1.8}
+.color-marker{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px;border:1px solid #ddd}
+.remove{display:block;min-height:32px;border:0;padding:0;font-size:12px;color:#666;text-decoration:underline}
+.details-section{border-top:1px solid #000;margin-top:64px;padding-top:26px}
+#accessories{display:flex;flex-wrap:wrap;gap:24px 28px}
+.accessory-color{width:48px;height:48px;border:1px solid #ddd;margin-bottom:12px}
+.accessory-name{border:0;padding:0;min-height:44px;display:flex;align-items:center;gap:8px;font-size:14px}
+.accessory-name:disabled{opacity:1}
+.uncertain{width:15px;height:15px}
+.empty{font-size:14px;color:#666;margin:0}
+#resume{display:flex;align-items:center;gap:24px;margin-bottom:48px;font-size:14px}
+#workspace{grid-column:1/-1;min-width:0}
+#options{display:flex;gap:20px 32px;flex-wrap:wrap;border-top:1px solid #000;border-bottom:1px solid #000;padding:20px 0;margin:20px 0 48px}
+#options label{display:flex;gap:12px;align-items:center;font-size:14px}
+select{font:inherit;background:#fff;color:#000;min-height:44px;padding:8px 28px 8px 10px;border:1px solid #aaa;border-radius:0}
+#looks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.look-card{min-width:0}
+.look-number{font-family:"Cormorant Garamond",Georgia,serif;font-size:18px;letter-spacing:.18em;margin:0 0 12px}
+.look-card>h2{font-family:"Songti SC",serif;font-size:30px;letter-spacing:.04em}
+.look-description{font-size:14px;min-height:50px;line-height:1.8;margin:14px 0 22px}
+.look-visual{aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.look-visual img{width:100%;height:100%;object-fit:contain}
+.look-placeholder{flex-direction:column;align-items:stretch}
+.recipe-line{font-size:14px;line-height:1.9;min-height:80px;margin:20px 0}
+.recipe-line>span{display:inline-block}
+.look-notices{font-size:13px;line-height:1.7}
+.look-notices p{margin:8px 0}
+summary{cursor:pointer;font-size:14px;min-height:44px;padding:12px 0}
+.generate-panel{border-top:1px solid #000;border-bottom:1px solid #ddd}
+.generation-contents{padding:4px 0 24px}
+.generation-contents h3{font-size:14px;font-weight:500;line-height:1.8;margin:24px 0 12px}
+.generation-contents p{font-size:13px;line-height:1.7}
+.generation-contents textarea{width:100%;height:240px;resize:vertical;font:13px/1.7 "PingFang SC",sans-serif;color:#000;background:#fff;border:1px solid #bbb;border-radius:0;padding:12px;margin-bottom:10px}
+.return-image{width:100%;text-align:left;font-size:14px;line-height:1.7;margin-top:24px;padding:18px 12px;border-style:dashed}
+.swatch-panel{margin-top:20px;border-top:1px solid #ddd}
+.swatch-panel img{width:100%;height:auto;display:block;border:1px solid #ddd;margin:12px 0}
+.result-actions{display:flex;justify-content:center;gap:20px;align-items:flex-start;margin-top:56px;border-top:1px solid #000;padding-top:36px}
+.result-actions .primary{font-size:16px;padding:16px 56px}
+.look-card.dragging{outline:2px solid #000;outline-offset:8px}
+dialog{max-width:min(480px,calc(100vw - 32px));width:100%;border:1px solid #000;padding:28px;background:#fff;color:#000}
+dialog::backdrop{background:rgb(0 0 0 / .25)}
+#categories{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+body.dragging{outline:3px solid #000;outline-offset:-12px}
+.home-nav{display:flex;gap:64px;margin-top:64px}
+.home-nav button{border:0;display:flex;flex-direction:column;gap:12px;align-items:center;font-size:14px}
+.home-nav span{font-family:"Cormorant Garamond",Georgia,serif;font-size:26px;letter-spacing:.16em}
+.filter-controls{display:flex;flex-wrap:wrap;gap:24px;margin:28px 0}
+.filter-controls label,#tags-fields>label{display:flex;align-items:center;gap:12px}
+#archive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 32px}
+.archive-card{border:0;padding:0;text-align:left;min-width:0;width:100%;align-self:start}
+.archive-card:hover:not(:disabled){background:#fff}
+.archive-card h2{font-family:"Songti SC",serif;letter-spacing:.05em;margin-top:20px}
+.archive-card p{font-size:13px;line-height:1.8}
+.archive-card p,#detail-actions p,.mood-options label{overflow-wrap:anywhere}
+.backup-actions{display:flex;gap:16px;margin-top:48px}
+.storage-note{font-size:13px;color:#666;line-height:1.8;margin-top:24px;max-width:640px}
+#detail-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+#detail-actions p{margin-right:auto}
+#tags-fields{display:grid;gap:20px}
+#tags-fields>input{padding:12px;border:1px solid #aaa;width:100%;border-radius:0}
+.mood-options{display:flex;gap:16px;flex-wrap:wrap}
+.mood-options label{display:flex;align-items:center;gap:6px;min-height:44px}
+.dialog-actions{display:flex;gap:16px;margin-top:28px}
+#today-result{max-width:420px;margin:36px auto}
+#today-result>button:not(.archive-card){margin:12px 12px 0 0}
+#archive-detail:not([hidden])~#result #looks{grid-template-columns:minmax(0,520px);justify-content:center}
+.eyebrow{font-family:"Cormorant Garamond",Georgia,serif;font-size:18px;letter-spacing:.18em;margin:0 0 12px}
+.page-title{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:36px;letter-spacing:.05em}
+#poster-controls{display:flex;flex-direction:column;align-items:center;gap:14px}
+#save-poster{padding:16px 48px}
+.toggle-label{display:flex;gap:10px;align-items:center;font-size:13px;min-height:44px}
+input[type=checkbox]{width:18px;height:18px;accent-color:#000}
+#settings-dialog p{font-size:14px;line-height:1.8}
+#poster-dialog{width:min(680px,calc(100vw - 32px));max-width:none;max-height:90vh;overflow:auto}
+#poster-dialog>form{text-align:right}
+#poster-image{display:block;max-width:100%;height:auto}
+@media(max-width:640px){
+  header{height:76px;margin:0 24px;gap:16px;flex-wrap:wrap;align-content:center}
+  .brand{font-size:20px;letter-spacing:.03em}
+  header .text-button{font-size:12px}
+  .text-button,.remove{min-height:44px}
+  main{padding:0 24px 40px}
+  #home{min-height:65vh}
+  .primary{font-size:21px;padding:22px 48px}
+  .desktop-copy{display:none}
+  .mobile-copy{display:block}
+  #result{grid-template-columns:1fr;gap:36px}
+  .reference{max-width:220px;width:100%;margin:auto}
+  #palette-bar{min-height:84px}
+  #palette-list{gap:16px 24px}
+  .section-heading{margin-bottom:20px}
+  .details-section{margin-top:36px}
+  #status{margin:16px 0}
+  #looks{grid-template-columns:1fr;gap:48px}
+  #options{gap:12px 20px;margin:0 0 36px}
+  #options label{flex:1 1 130px;justify-content:space-between}
+  #options select{max-width:96px}
+  #archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .filter-controls{gap:12px}
+  .filter-controls label{font-size:13px;flex:1 1 130px;justify-content:space-between}
+  .filter-controls select{max-width:105px}
+  .home-nav{gap:32px;margin-top:48px}
+  .result-actions{gap:16px}
+  .result-actions .primary,#save-poster{padding:16px 26px;font-size:15px}
+  .page-title{font-size:30px}
+  .look-description,.recipe-line{min-height:0}
+}
+@media(prefers-reduced-motion:no-preference){#result{animation:appear .3s ease-out}#palette-bar{animation:unfold .4s ease-out both}.look-visual img{animation:appear .3s ease-out}@keyframes appear{from{opacity:0}to{opacity:1}}@keyframes unfold{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}}
+#pick-marker{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border:2px solid #fff;outline:1px solid #000;border-radius:50%;pointer-events:none}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.expired{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:24px}

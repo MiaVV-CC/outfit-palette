@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>穿搭工作台</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="./index.html">穿搭工作台</a>
+    <button id="back" class="text-button" hidden>返回</button>
+    <button id="upload-again" class="text-button" hidden>上传穿搭</button>
+  </header>
+  <main>
+    <section id="home">
+      <div id="resume" hidden><span>上次的结果</span><button id="resume-open" class="text-button">打开</button></div>
+      <button id="upload" class="primary">上传穿搭</button>
+      <p class="desktop-copy">拖入或粘贴图片。照片只在本机处理。</p>
+      <p class="mobile-copy">照片只在本机处理。</p>
+      <nav class="home-nav"><button id="open-archive"><span>ARCHIVE</span>收藏</button><button id="open-today"><span>TODAY</span>今日穿搭</button></nav>
+    </section>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="archive" hidden>
+      <div class="section-heading"><div><p class="eyebrow">ARCHIVE</p><h1 class="page-title">收藏</h1></div><button id="add-personal">添加我的穿搭</button></div>
+      <p>上传自己的穿搭照，只记录配色。</p>
+      <div id="archive-filters" class="filter-controls"></div>
+      <div id="archive-grid"></div>
+      <div class="backup-actions"><button id="export-backup">导出备份</button><button id="import-backup">导入备份</button></div>
+      <p class="storage-note">收藏只存在本浏览器，Safari 7 天未打开可能被清除。手机可加到主屏幕，并定期导出备份。</p>
+    </section>
+    <section id="today" hidden>
+      <p class="eyebrow">TODAY</p><h1 class="page-title">今日穿搭</h1><div id="today-options" class="filter-controls"></div><button id="today-pick">挑一套</button><div id="today-result"></div>
+    </section>
+    <section id="archive-detail" hidden><div id="detail-actions"></div></section>
+    <section id="result" hidden>
+      <div class="reference">
+        <div id="image-stage">
+          <canvas id="reference" role="img" aria-label="原图" aria-describedby="keyboard-help" tabindex="0"></canvas>
+          <div id="crop-box" hidden></div>
+          <div id="pick-marker" hidden></div>
+          <p id="keyboard-help" class="visually-hidden">方向键移动，Shift + 方向键加大幅度或调整选框大小，Enter 确定，Esc 取消。</p>
+        </div>
+        <div class="image-actions">
+          <button id="crop">框选人物</button>
+          <button id="crop-confirm" hidden>确定</button>
+          <button id="crop-cancel" hidden>取消</button>
+        </div>
+        <p id="pick-message" role="status"></p>
+        <button id="pick-cancel" hidden>取消</button>
+      </div>
+      <div id="analysis">
+        <section class="palette-section">
+          <div class="section-heading"><h1>PALETTE</h1><button id="add-color" class="text-button">添加颜色</button></div>
+          <div id="palette-bar"></div>
+          <div id="palette-list"></div>
+        </section>
+        <section class="details-section">
+          <div class="section-heading"><h2>DETAILS</h2><button id="add-accessory" class="text-button">添加配饰</button></div>
+          <div id="accessories"></div>
+        </section>
+      </div>
+      <div id="workspace" hidden>
+        <div id="options"></div>
+        <div id="looks"></div>
+        <footer class="result-actions"><button id="save-collection" class="primary">收藏</button><div id="poster-controls"><button id="save-poster">保存海报</button><label class="toggle-label"><input id="poster-original" type="checkbox" checked>海报显示原图</label></div></footer>
+      </div>
+    </section>
+  </main>
+  <input id="file" type="file" accept="image/*" hidden aria-label="上传穿搭">
+  <input id="personal-file" type="file" accept="image/*" hidden aria-label="添加我的穿搭">
+  <input id="backup-file" type="file" accept=".json,application/json" hidden aria-label="导入备份">
+  <dialog id="tags-dialog" aria-labelledby="tags-title"><form method="dialog"><div class="section-heading"><h2 id="tags-title">标签</h2><button>关闭</button></div></form><div id="tags-fields"></div></dialog>
+  <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">删除后无法恢复。</h2><div class="dialog-actions"><button id="delete-confirm">删除</button><form method="dialog"><button>取消</button></form></div></dialog>
+  <dialog id="settings-dialog" aria-label="SETTINGS"><form method="dialog"><div class="section-heading"><h2>SETTINGS</h2><button>关闭</button></div></form><p id="settings-provider"></p><label id="settings-automatic" class="toggle-label"><input id="automatic-toggle" type="checkbox">自动生成效果图</label><p id="settings-description"></p><p id="settings-cost"></p></dialog>
+  <dialog id="poster-dialog" aria-label="保存海报"><form method="dialog"><button>关闭</button></form><p>长按图片存入相册。</p><img id="poster-image" alt="保存海报"></dialog>
+  <dialog id="category-dialog" aria-labelledby="category-title">
+    <form method="dialog">
+      <div class="section-heading"><h2 id="category-title">品类</h2><button value="cancel">关闭</button></div>
+      <div id="categories"></div>
+    </form>
+  </dialog>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>
